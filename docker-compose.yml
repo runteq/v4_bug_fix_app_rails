@@ -1,8 +1,7 @@
-version: '3.8'
 services:
   web:
     build: .
-    command: rails server -b 0.0.0.0
+    command: sh -c "rails db:create && rails db:migrate && rails server -b 0.0.0.0"
     volumes:
       - .:/app
       - ./storage:/app/storage
