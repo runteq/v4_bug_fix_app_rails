@@ -3,11 +3,11 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:users_session][:email])
+    user = User.find_by(email: params[:user_session][:email])
     result = user.authenticate(params[:user_session][:password])
     if result.present?
       log_in_with user
-      redirect_to top_page_url, success: 'Login successful!'
+      redirect_to top_page_url, flash: { success: 'Login successful!' }
     else
       # 他人のアカウントでログインしようとする人へのヒントとならない様に、入力されたメールアドレスが存在する場合も同じエラーメッセージを返す
       flash.now[:danger] = 'Invalid email or password'
@@ -17,6 +17,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     log_out
-    redirect_to login_path, success: 'Logout successful!'
+    redirect_to login_path, flash: { success: 'Logout successful!' }
   end
 end
