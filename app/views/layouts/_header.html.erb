@@ -20,7 +20,7 @@
               <%= current_user.email %>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><%= link_to 'Log out', logout_path, class: 'dropdown-item', method: :delete  %></li>
+              <li>  <%= button_to 'Log out', logout_path, method: :delete, class: 'dropdown-item', form: { class: 'd-inline' } %></li>
             </ul>
           </li>
         <% else %>
