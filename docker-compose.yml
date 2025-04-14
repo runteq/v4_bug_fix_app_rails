@@ -1,9 +1,11 @@
 services:
-  web:
+  bug-app:
     build: .
-    command: sh -c "rails db:create && rails db:migrate && rails server -b 0.0.0.0"
+    command: sh -c "rm -f /app/tmp/pids/server.pid && rails db:create && rails db:migrate && rails server -b 0.0.0.0"
     volumes:
       - .:/app
       - ./storage:/app/storage
     ports:
       - "3000:3000"
+    stdin_open: true
+    tty: true
